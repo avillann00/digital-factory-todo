@@ -25,4 +25,4 @@ const userSchema = new mongoose.Schema({
   tasks: [mongoose.SchemaTypes.ObjectId]
 })
 
-module.exports = userSchema
+module.exports = mongoose.model("User", userSchema)
