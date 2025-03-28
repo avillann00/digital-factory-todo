@@ -4,7 +4,6 @@ const User = require('../models/users')
 const registerUser = async (req, res) => {
   try {
     const { email, username, password } = req.body
-    console.log('here')
     const existing = await User.findOne({ $or: [{email}, {username}] })
     if(existing){
       return res.status(400).json({ message: 'Email or username already exists' })
