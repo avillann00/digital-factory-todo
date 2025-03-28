@@ -22,12 +22,13 @@ function Login(){
 
     navigate('/')
     } catch (error: any) {
+      alert('Either username or password are incorrect')
       console.error('error logging in: ', error)
     }
   }
 
   return (
-    <div>
+    <div className='login-div'>
       <h1>Login Page</h1>
       <form className='login-form' onSubmit={handleSubmit}>
         <input 

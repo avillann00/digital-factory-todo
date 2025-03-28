@@ -25,7 +25,6 @@ function Register(){
     }
 
     try {
-      alert('posting now')
       await axios.post('http://localhost:5000/api/users/register', {
         username: username,
         email: email,
@@ -33,16 +32,17 @@ function Register(){
       }, {
         withCredentials: true
       })
-      alert('post post')
+      alert('Registered')
 
       navigate('/login')
     } catch (error: any) {
+      alert('There was an error with your registration')
       console.error('error logging in: ', error)
     }
   }
 
   return (
-    <div>
+    <div className='register-div'>
       <h1>Register Page</h1>
       <form className='register-form' onSubmit={handleSubmit}>
         <input 

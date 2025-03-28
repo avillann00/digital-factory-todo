@@ -1,0 +1,16 @@
+.register-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.register-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 5px solid gray;
+  height: 200px;
+  gap: 10px
+}
