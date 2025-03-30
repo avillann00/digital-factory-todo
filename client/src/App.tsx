@@ -4,6 +4,7 @@ import './App.css'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Home from './pages/Home'
+import Task from './pages/Task'
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
         <Route path='/login' element={ <Login /> } />
         <Route path='/register' element={ <Register />} />
         <Route path='/' element={ <Home /> } />
+        <Route path='/task/new' element={ <Task /> } />
+        <Route path='/task/:id' element={ <Task /> } />
       </Routes>
     </BrowserRouter>
   )
