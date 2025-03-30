@@ -30,17 +30,32 @@ For more information on Express see [express](https://expressjs.com) and [node](
 
 ### How to run
 
-1. Clone this repository.
-2. Start the back end and install its dependencies
+1. Clone this repository and change directories.
 
-`cd backend`
+`git clone https://github.com/avillann00/digital-factory-todo.git` 
+`cd digital-factory-todo` 
+
+2. Create the database using MongoDB
+
+`mongosh` 
+`use todo` 
+
+3. Start the back end and install its dependencies
+
+`cd server`
+`npm install` 
+`npm run dev` 
+
+4. Create a .env and define the variables
+
+`touch .env` 
+`MONGO_URI=mongodb://localhost/todo` 
+`SESSION_SECRET=your-secret-key` 
+
+5. Start the front end and install its dependencies
+
+`cd ../client`
 `npm install` 
 `npm start` 
 
-3. Start the front end and install its dependencies
-
-`cd ../frontend`
-`npm install` 
-`npm start` 
-
-4. Go to the page in your local browser [app](https://localhost:5000) 
+6. Go to the page in your local browser [app](https://localhost:3000) 
