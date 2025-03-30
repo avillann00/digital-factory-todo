@@ -22,7 +22,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: () => Date.now()
   },
-  tasks: [mongoose.SchemaTypes.ObjectId]
+  tasks: [{
+    type: mongoose.Schema.ObjectId,
+    ref: 'Task'
+  }]
 })
 
 module.exports = mongoose.model("User", userSchema)

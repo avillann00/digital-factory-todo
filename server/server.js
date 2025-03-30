@@ -34,4 +34,7 @@ app.use(express.static('public'));
 const userRouter = require('./routes/userRoutes')
 app.use('/api/users', userRouter)
 
+const taskRouter = require('./routes/taskRoutes')
+app.use('/api/tasks', taskRouter)
+
 app.listen(5000, () => { console.log('server started on port 5000') })
