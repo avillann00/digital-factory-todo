@@ -42,40 +42,52 @@ function Register(){
   }
 
   return (
-    <div className='register-div'>
-      <h1>Register Page</h1>
-      <form className='register-form' onSubmit={handleSubmit}>
-        <input 
-          className='register-username-field'
-          type='text'
-          placeholder='username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />  
-        <input 
-          className='register-email-field'
-          type='email'
-          placeholder='email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        /> 
-        <input 
-          className='register-password-field'
-          type='password'
-          placeholder='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        /> 
-        <input 
-          className='register-confirm-password-field'
-          type='password'
-          placeholder='confirm password'
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        <button className='register-submit-button' type='submit'>Register</button>
-      </form>
-      <button className='register-switch-button' onClick={() => navigate('/login')}>Already have an account?</button>
+    <div className="container d-flex justify-content-center align-items-center min-vh-100">
+      <div className="card p-4 shadow-lg" style={{ maxWidth: '400px', width: '100%' }}>
+        <h1 className="text-center mb-4">Register</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input 
+              className="form-control"
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <input 
+              className="form-control"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <input 
+              className="form-control"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <input 
+              className="form-control"
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          <button className="btn btn-primary w-100" type="submit">Register</button>
+        </form>
+        <div className="text-center mt-3">
+          <button className="btn btn-link" onClick={() => navigate('/login')}>Already have an account? Login here</button>
+        </div>
+      </div>
     </div>
   )
 }

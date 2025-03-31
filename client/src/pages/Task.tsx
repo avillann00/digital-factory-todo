@@ -53,36 +53,46 @@ function Task(){
   }
 
   return (
-    <div className='task-div'>
-      <h1>Task form</h1>
-      <h1>{id ? 'Edit Task' : 'New Task'}</h1>
-      <form className='task-form' onSubmit={handleSubmit}>
-        <div>Task Title</div>
-        <input
-          className='task-title-field'
-          type='text'
-          placeholder='Title'
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-        /> 
-        <div>Task Details</div>
-        <input
-          className='task-content-field'
-          type='text'
-          placeholder='Content'
-          value={content}
-          onChange={e => setContent(e.target.value)}
-        />
-        <div>Task Complete By Date</div>
-        <input
-          className='task-complete-by-field'
-          type='date'
-          value={completeBy}
-          onChange={e => setCompleteBy(e.target.value)}
-        />
-        <button type='submit'>{id ? 'Edit Task' : 'Add task'}</button>
-      </form>
-      <button onClick={() => navigate('/')}>Go back</button>
+    <div className="container d-flex justify-content-center align-items-center min-vh-100">
+      <div className="card p-4 shadow-lg" style={{ maxWidth: '500px', width: '100%' }}>
+        <h1 className="text-center mb-4">{id ? 'Edit Task' : 'New Task'}</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="task-title" className="form-label">Task Title</label>
+            <input
+              id="task-title"
+              className="form-control"
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="task-content" className="form-label">Task Details</label>
+            <input
+              id="task-content"
+              className="form-control"
+              type="text"
+              placeholder="Content"
+              value={content}
+              onChange={e => setContent(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="task-complete-by" className="form-label">Task Complete By Date</label>
+            <input
+              id="task-complete-by"
+              className="form-control"
+              type="date"
+              value={completeBy}
+              onChange={e => setCompleteBy(e.target.value)}
+            />
+          </div>
+          <button className="btn btn-primary w-100" type="submit">{id ? 'Edit Task' : 'Add Task'}</button>
+        </form>
+        <button className="btn btn-link mt-3 w-100" onClick={() => navigate('/')}>Go Back</button>
+      </div>
     </div>
   )
 }

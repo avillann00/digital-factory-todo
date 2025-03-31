@@ -28,26 +28,34 @@ function Login(){
   }
 
   return (
-    <div className='login-div'>
-      <h1>Login Page</h1>
-      <form className='login-form' onSubmit={handleSubmit}>
-        <input 
-          className='login-username-field'
-          type='text'
-          placeholder='username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        /> 
-        <input 
-          className='login-password-field'
-          type='password'
-          placeholder='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button className='login-submit-button' type='submit'>Login</button>
-      </form>
-      <button className='login-switch-button' onClick={() => navigate('/register')}>Need have an account?</button>
+    <div className="container d-flex justify-content-center align-items-center min-vh-100">
+      <div className="card p-4 shadow-lg" style={{ maxWidth: '400px', width: '100%' }}>
+        <h1 className="text-center mb-4">Login</h1>
+        <form className="mb-3" onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input 
+              className="form-control"
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <input 
+              className="form-control"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button className="btn btn-primary w-100" type="submit">Login</button>
+        </form>
+        <div className="text-center">
+          <button className="btn btn-link" onClick={() => navigate('/register')}>Don't have an account? Register here</button>
+        </div>
+      </div>
     </div>
   )
 }

@@ -76,25 +76,29 @@ function Home(){
   }
 
   const tasks = data?.tasks?.map((task) => (
-    <li className='task-list-element' key={task._id}>
-      <h3>{task.title}</h3>
-      <p>{task.content}</p>
-      <h3>Complete by: {task.completeBy.slice(0, 10)}</h3>
-      <button onClick={() => handleModify(task)}>Modify</button>
-      <button onClick={() => handleDelete(task)}>Delete</button>
+    <li className="list-group-item d-flex justify-content-between align-items-center" key={task._id}>
+      <div>
+        <h5>{task.title}</h5>
+        <p>{task.content}</p>
+        <small>Complete by: {task.completeBy.slice(0, 10)}</small>
+      </div>
+      <div>
+        <button className="btn btn-warning btn-sm me-2" onClick={() => handleModify(task)}>Modify</button>
+        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(task)}>Delete</button>
+      </div>
     </li>
   ))
 
   return (
-    <div className='home-div'>
-      <h1>Home page</h1>
-      <h1>{data?.username ? `Hello ${data.username}` : 'Welcome'}</h1>
-      <button onClick={handleAdd}>Add task</button>
-      <h1>Tasks:</h1>
-      <ul className='task-list'>
+    <div className='container mt-5'>
+      <h1 className='text-center mb-4'>Home page</h1>
+      <h1 className='text-center'>{data?.username ? `Hello ${data.username}` : 'Welcome'}</h1>
+      <button className='btn btn-primary mx-auto d-block' onClick={handleAdd}>Add task</button>
+      <h1 className='text-center'>Tasks:</h1>
+      <ul className='list-group mb-4'>
         {tasks}
       </ul>
-      <button onClick={handleLogout}>Logout</button>
+      <button className='btn btn-danger w-100' onClick={handleLogout}>Logout</button>
     </div>
   )
 }
