@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const User = require('../models/users')
+const { generateToken } = require('../controllers/jwt')
 
 const registerUser = async (req, res) => {
   try {
@@ -40,17 +41,18 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ message: 'Invalid username or password' });
     }
 
-    req.session.user = { id: user._id, username: user.username, email: user.email }
-    res.json({ message: 'Login successful', user: req.session.user })
+    const token = generateToken(user)
+    res.cookie('token', token, { httpOnly: true, secure: false })
+
+    res.json({ message: 'Login successful', token })
   } catch (e) {
     console.log('error logging in user: ', e)
   }
 }
 
 const logoutUser = async (req, res) => {
-  req.session.destroy(() => {
-    res.json({ message: 'Logged out' })
-  })
+  res.clearCookie('token', { httpOnly: true, secure: false })
+  res.json({ message: 'Logged out successfully' })
 }
 
 module.exports = { registerUser, loginUser, logoutUser }

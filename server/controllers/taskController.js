@@ -2,32 +2,24 @@ const Task = require('../models/tasks')
 const User = require('../models/users')
 
 const getTasks = async (req, res) => {
-  if(!req.session.user){
-    return res.status(401).json({ message: 'Unauthorized' })
-  }
-  
   // const tasks = await Task.find({ user: req.session.user.id }).populate('user', 'username')
-  const tasks = await User.findById(req.session.user.id).populate('tasks')
+  const tasks = await User.findById(req.user.id).populate('tasks')
 
   res.json(tasks)
 }
 
 const addTask = async (req, res) => {
-  if(!req.session.user){
-    return res.status(401).json({ message: 'Unauthorized' })
-  }
-
-  try{
+    try{
     const { title, content, completeBy } = req.body
     
     const task = await Task.create({
       title,
       content,
       completeBy,
-      user: req.session.user.id
+      user: req.user.id
     })
 
-    await User.findByIdAndUpdate(req.session.user.id, {
+    await User.findByIdAndUpdate(req.user.id, {
       $push: { tasks: task._id }
     })
 
@@ -41,16 +33,12 @@ const addTask = async (req, res) => {
 }
 
 const editTask = async (req, res) => {
-  if(!req.session.user){
-    return res.status(401).json({ message: 'Unauthorized' })
-  }
-
-  try{
+    try{
     const { id } = req.params
     const { title, content, completeBy, updatedDate } = req.body
 
     const updatedTask = await Task.findOneAndUpdate(
-      { _id: id, user: req.session.user.id },
+      { _id: id, user: req.user.id },
       { title, content, completeBy, updatedAt: updatedDate },
       { new: true, runValidators: true }
     )
@@ -67,21 +55,17 @@ const editTask = async (req, res) => {
 }
 
 const deleteTask = async (req, res) => {
-  if(!req.session.user){
-    return res.status(401).json({ message: 'Unauthorized' })
-  }
-
-  try{
+    try{
     const { id } = req.params
 
-    const deletedTask = await Task.findOneAndDelete({ _id: id, user: req.session.user.id })
+    const deletedTask = await Task.findOneAndDelete({ _id: id, user: req.user.id })
 
     if(!deletedTask){
       return res.status(404).json({ message: 'Task not found or authorized' })
     }
 
     await User.updateOne(
-      { _id: req.session.user.id },  
+      { _id: req.user.id },  
       { $pull: { tasks: id } }  
     )
 
